@@ -1,0 +1,22 @@
+{% extends 'issue_app/base.html' %}
+
+{% block page_content %}
+
+<h2 class="mb-3">My Reported Issues</h2>
+
+{% if my_issues %}
+    {% for one_issue in my_issues %}
+        <div class="issue-card">
+            <div class="d-flex justify-content-between">
+                <h5><a href="{% url 'issue_detail_page' one_issue.id %}">{{ one_issue.title }}</a></h5>
+                <span class="status-{{ one_issue.status }}">{{ one_issue.get_status_display }}</span>
+            </div>
+            <p class="text-muted mb-1">📍 {{ one_issue.location }}</p>
+            <small class="text-muted">Reported on {{ one_issue.created_at|date:"d M Y" }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>You haven't reported any issues yet. <a href="{% url 'report_issue_page' %}">Report one now</a>.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Civic Issue Reporter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- bootstrap is used only for quick, simple styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'issue_app/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home_page' %}">🏙️ Civic Issue Reporter</a>
+        <div class="d-flex gap-3">
+            <a class="nav-link" href="{% url 'home_page' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'report_issue_page' %}">Report Issue</a>
+                <a class="nav-link" href="{% url 'my_issues_page' %}">My Issues</a>
+                <a class="nav-link" href="{% url 'logout_page' %}">Logout ({{ user.username }})</a>
+            {% else %}
+                <a class="nav-link" href="{% url 'login_page' %}">Login</a>
+                <a class="nav-link" href="{% url 'signup_page' %}">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4 mb-5">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% block page_content %}
+    {% endblock %}
+</div>
+
+<footer>
+    Made with Django • Crowdsourced Civic Issue Reporting and Resolution System
+</footer>
+
+</body>
+</html>

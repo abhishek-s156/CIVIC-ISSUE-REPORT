@@ -1,0 +1,56 @@
+{% extends 'issue_app/base.html' %}
+
+{% block page_content %}
+
+<h2 class="mb-3">All Reported Issues</h2>
+
+<!-- simple filter form -->
+<form method="get" class="row g-2 mb-4">
+    <div class="col-auto">
+        <select name="category" class="form-select">
+            <option value="">All Categories</option>
+            <option value="pothole" {% if selected_category == 'pothole' %}selected{% endif %}>Pothole / Road Damage</option>
+            <option value="garbage" {% if selected_category == 'garbage' %}selected{% endif %}>Garbage / Waste</option>
+            <option value="streetlight" {% if selected_category == 'streetlight' %}selected{% endif %}>Street Light</option>
+            <option value="water" {% if selected_category == 'water' %}selected{% endif %}>Water Supply</option>
+            <option value="drainage" {% if selected_category == 'drainage' %}selected{% endif %}>Drainage</option>
+            <option value="other" {% if selected_category == 'other' %}selected{% endif %}>Other</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <select name="status" class="form-select">
+            <option value="">All Status</option>
+            <option value="pending" {% if selected_status == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="in_progress" {% if selected_status == 'in_progress' %}selected{% endif %}>In Progress</option>
+            <option value="resolved" {% if selected_status == 'resolved' %}selected{% endif %}>Resolved</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <a href="{% url 'home_page' %}" class="btn btn-outline-secondary">Reset</a>
+    </div>
+</form>
+
+{% if all_issues %}
+    {% for one_issue in all_issues %}
+        <div class="issue-card">
+            <div class="d-flex justify-content-between">
+                <h5>
+                    <a href="{% url 'issue_detail_page' one_issue.id %}">{{ one_issue.title }}</a>
+                </h5>
+                <span class="status-{{ one_issue.status }}">{{ one_issue.get_status_display }}</span>
+            </div>
+            <p class="text-muted mb-1">📍 {{ one_issue.location }} | 🏷️ {{ one_issue.get_category_display }}</p>
+            <p>{{ one_issue.description|truncatewords:25 }}</p>
+            <small class="text-muted">
+                Reported by {{ one_issue.reported_by.username }} on {{ one_issue.created_at|date:"d M Y" }}
+                | 👍 {{ one_issue.total_upvotes }} upvotes
+                | 💬 {{ one_issue.total_comments }} comments
+            </small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No issues found. Be the first one to <a href="{% url 'report_issue_page' %}">report an issue</a>!</p>
+{% endif %}
+
+{% endblock %}

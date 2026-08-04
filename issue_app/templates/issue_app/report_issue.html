@@ -1,0 +1,36 @@
+{% extends 'issue_app/base.html' %}
+
+{% block page_content %}
+
+<h2 class="mb-3">Report a New Civic Issue</h2>
+
+{% if similar_issues %}
+    <div class="similar-issue-box">
+        <strong>⚠️ Our simple AI checker found similar issues already reported:</strong>
+        <ul>
+            {% for sim_issue in similar_issues %}
+                <li>
+                    <a href="{% url 'issue_detail_page' sim_issue.id %}">{{ sim_issue.title }}</a>
+                    ({{ sim_issue.get_status_display }})
+                </li>
+            {% endfor %}
+        </ul>
+        <p>If your problem is different, you can still submit it below.</p>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ issue_form.as_p }}
+            <input type="hidden" name="confirm_submit" value="yes">
+            <button type="submit" class="btn btn-warning">Yes, still submit my report</button>
+            <a href="{% url 'home_page' %}" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    </div>
+{% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ issue_form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Issue</button>
+    </form>
+{% endif %}
+
+{% endblock %}

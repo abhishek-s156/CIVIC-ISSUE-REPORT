@@ -1,0 +1,78 @@
+/* style.css
+   -----------
+   Simple, beginner-friendly styles for our Civic Issue website.
+*/
+
+body {
+    background-color: #f4f6f8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background-color: #1d3557 !important;
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.issue-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-pending {
+    background-color: #ffe5b4;
+    color: #8a5a00;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.status-in_progress {
+    background-color: #cfe8ff;
+    color: #084298;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.status-resolved {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.upvote-btn {
+    border: 1px solid #1d3557;
+    background: #ffffff;
+    color: #1d3557;
+    border-radius: 8px;
+    padding: 6px 14px;
+}
+
+.upvote-btn:hover {
+    background: #1d3557;
+    color: #ffffff;
+}
+
+.similar-issue-box {
+    background: #fff3cd;
+    border: 1px solid #ffe69c;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-size: 14px;
+}
