@@ -2,7 +2,7 @@
 admin.py
 ---------
 This file makes our models (Issue, Comment) visible and
-editable inside the Django Admin panel at /admin/
+editable inside the Django Admin panel at ../admin/
 """
 
 from django.contrib import admin
