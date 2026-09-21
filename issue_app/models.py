@@ -4,7 +4,7 @@ models.py
 This file has the "tables" of our project.
 In Django, each class here becomes a table in the database.
 
-We have 2 simple tables:
+We have 2 simple tables:_
 1. Issue    -> one civic problem reported by a citizen (like pothole, garbage, etc.)
 2. Comment  -> a small message left by someone on an issue
 """
