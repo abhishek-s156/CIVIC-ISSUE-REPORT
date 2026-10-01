@@ -1,5 +1,5 @@
 """
-ASGI config for civic_issue_project project.
+ASGI config for civic_issue_project project....
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
