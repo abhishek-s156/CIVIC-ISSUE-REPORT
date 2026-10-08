@@ -6,9 +6,9 @@ garbage, broken street lights, etc.), upvote issues that matter to
 them, comment, and track the status until it is resolved.
 
 This project is written in a **beginner-friendly style**:
-- Simple, clear file and folder names
-- Simple variable and function names
-- Lots of comments explaining what each part does
+- Simple, clear file and folder names.
+- Simple variable and function names.
+- Lots of comments explaining what each part does.
 
 ---
 
